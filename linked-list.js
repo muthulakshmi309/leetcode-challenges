@@ -7,7 +7,7 @@ class LinkedList {
     }
 
     add(elem) {
-        let node = new Node(elem);       
+        let node = new Node(elem);
         if (!this.head) {
             this.head = node;
         } else {
@@ -38,6 +38,12 @@ class LinkedList {
         return -1;
     }
 
+    removeWithoutHead(node) {
+        let nextNode = node.next;
+        node.data = nextNode.data;
+        node.next = nextNode.next;
+    }
+
     isEmpty() {
         return !this.size;
     }
@@ -58,6 +64,21 @@ class LinkedList {
             console.log(curr);
             curr = curr.next;
         }
+    }
+
+    isPalindrome() {
+        let arr = [];
+        let curr = head;
+        while (curr) {
+            arr.push(curr.data);
+            curr = curr.next;
+        }
+        for (let i = 0; i < arr.length / 2; i++) {
+            if (arr[i] !== arr[arr.length - 1 - i]) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 
